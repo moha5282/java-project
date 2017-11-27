@@ -13,7 +13,7 @@ node('linux') {
 		sh 'aws s3 cp ${WORKSPACE}/dist/rectangle-$BUILD_NUMBER.jar s3://jenkins-s3bucket-173vamk49shym' 
 	}
 	stage('Report') {    
-              withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: '8ffbf83c-7204-4143-b681-0eba9788354e',                  secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+              withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: '27a7f5f1-f776-42ad-ba2f-1d2ca0d00a02', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
 			sh 'aws cloudformation describe-stack-resources --region us-east-1 --stack-name jenkins'    
                         }
 
