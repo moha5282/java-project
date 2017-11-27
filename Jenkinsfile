@@ -2,15 +2,21 @@ properties([pipelineTriggers([githubPush()])])
 
 node('linux') {   
 	stage('Unit Tests') {    
+		echo 'Unit Test Started'
 		git 'https://github.com/moha5282/java-project.git'
 		sh 'ant -f test.xml -v'   
-		junit 'reports/result.xml'   
+		junit 'reports/result.xml'
+		echo 'Unit Test Stage Completed'
 	}   
 	stage('Build') {    
+		echo 'Build Stage Started'
 		sh 'ant -f build.xml -v'   
+		echo 'Build Stage Completed'
 	}   
 	stage('Deploy') {    
+		echo 'Deploy Stage Started'
 		sh 'aws s3 cp ${WORKSPACE}/dist/rectangle-$BUILD_NUMBER.jar s3://jenkins-s3bucket-173vamk49shym' 
+		echo 'Deploy Stage Completed'
 	}
 	stage('Report') {    
 		echo 'Generating Report'
@@ -19,5 +25,6 @@ node('linux') {
                         }
 
                         }
+	       echo 'Report Generation Successfull'
 
              }
