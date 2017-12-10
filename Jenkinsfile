@@ -15,7 +15,7 @@ node('linux') {
 	}   
 	stage('Deploy') {    
 		echo 'Deploy Stage Started'
-		sh 'aws s3 cp ${WORKSPACE}/dist/rectangle-$BUILD_NUMBER.jar s3://jenkins-s3bucket-173vamk49shym' 
+		sh 'aws s3 cp ${WORKSPACE}/dist/rectangle-$BUILD_NUMBER.jar s3://jenkins-s3bucket-fvdsbf2xcgcc.s3.amazonaws.com' 
 		echo 'Deploy Stage Completed'
 	}
 	stage('Report') {    
